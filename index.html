@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AmiGo - Desliza y conecta</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+
+    <header class="topbar">
+      <div class="logo">Ami<span>Go</span></div>
+      <button class="icon-btn" id="btn-reiniciar" title="Reiniciar demo" aria-label="Reiniciar demo">⟲</button>
+    </header>
+
+    <main class="vistas">
+
+      <!-- DESCUBRIR -->
+      <section class="vista activa" id="vista-descubrir">
+        <div class="deck" id="deck"></div>
+
+        <div class="deck-vacio oculto" id="deck-vacio">
+          <div class="vacio-emoji">✨</div>
+          <h3>Ya viste a todos por ahora</h3>
+          <p>Vuelve más tarde o reinicia la demo para verlos de nuevo.</p>
+          <button class="btn btn-primario" id="btn-reiniciar-vacio">Volver a empezar</button>
+        </div>
+
+        <div class="acciones" id="acciones">
+          <button class="accion pequena" id="btn-deshacer" title="Deshacer" aria-label="Deshacer">↶</button>
+          <button class="accion nope" id="btn-nope" title="No me interesa" aria-label="No me interesa">✕</button>
+          <button class="accion like" id="btn-like" title="Me gusta" aria-label="Me gusta">♥</button>
+          <button class="accion pequena" id="btn-info" title="Ver perfil" aria-label="Ver perfil">i</button>
+        </div>
+      </section>
+
+      <!-- MATCHES -->
+      <section class="vista" id="vista-matches">
+        <div class="vista-scroll">
+          <h2 class="titulo-vista">Tus matches</h2>
+          <p class="sub" id="matches-sub"></p>
+          <div class="lista-matches" id="lista-matches"></div>
+          <div class="vacio-texto oculto" id="matches-vacio">
+            Aún no tienes matches.<br>Dale corazón a alguien en Descubrir.
+          </div>
+        </div>
+      </section>
+
+      <!-- CHAT -->
+      <section class="vista" id="vista-chat">
+        <div class="chat-cabecera">
+          <button class="icon-btn" id="chat-atras" aria-label="Volver">‹</button>
+          <button class="chat-persona" id="chat-persona"></button>
+        </div>
+        <div class="mensajes" id="mensajes"></div>
+        <form class="chat-form" id="chat-form" autocomplete="off">
+          <input type="text" id="chat-input" placeholder="Escribe un mensaje..." maxlength="300">
+          <button class="btn btn-primario" type="submit">Enviar</button>
+        </form>
+      </section>
+
+    </main>
+
+    <nav class="nav">
+      <button class="nav-btn activo" data-vista="descubrir">Descubrir</button>
+      <button class="nav-btn" data-vista="matches">
+        Matches <span class="nav-badge oculto" id="badge-matches">0</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- PERFIL DETALLADO -->
+  <div class="modal oculto" id="modal-detalle" role="dialog" aria-modal="true" aria-label="Perfil">
+    <div class="modal-hoja">
+      <div class="galeria">
+        <div class="galeria-barras" id="galeria-barras"></div>
+        <div class="galeria-foto" id="galeria-foto"><span class="galeria-emoji" id="galeria-emoji"></span></div>
+        <button class="galeria-zona izq" id="gal-prev" aria-label="Foto anterior"></button>
+        <button class="galeria-zona der" id="gal-next" aria-label="Foto siguiente"></button>
+        <button class="modal-cerrar" id="detalle-cerrar" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="detalle-cuerpo">
+        <h2 id="d-nombre"></h2>
+        <div class="meta" id="d-ocupacion"></div>
+        <div class="meta" id="d-ciudad"></div>
+        <h4>Sobre mí</h4>
+        <p id="d-bio"></p>
+        <h4>Busco</h4>
+        <p id="d-busca"></p>
+        <h4>Intereses</h4>
+        <div class="tags" id="d-tags"></div>
+      </div>
+      <div class="detalle-acciones" id="d-acciones"></div>
+    </div>
+  </div>
+
+  <!-- ES UN MATCH -->
+  <div class="overlay oculto" id="overlay-match">
+    <div class="match-caja">
+      <div class="match-titulo">¡Es un match!</div>
+      <p id="match-texto"></p>
+      <div class="match-avatares">
+        <div class="avatar-grande" id="match-yo"></div>
+        <div class="avatar-grande" id="match-otro"></div>
+      </div>
+      <button class="btn btn-primario ancho" id="match-mensaje">Enviar mensaje</button>
+      <button class="btn btn-secundario ancho" id="match-seguir">Seguir descubriendo</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
